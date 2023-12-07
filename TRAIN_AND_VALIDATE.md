@@ -8,7 +8,7 @@ For example, to **train** LanguageBind on **Depth-Language** with 8 GPUs (1 node
 * Then you can run
 
 ```bash
-CACHE_DIR="path/to/pretrained/weight"
+CACHE_DIR="/path/to/LanguageBind"
 ANNOTATION="path/to/data"
 cd /path/to/LanguageBind
 TORCH_DISTRIBUTED_DEBUG=DETAIL HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 torchrun --nnodes=1 --nproc_per_node 8 \
@@ -40,7 +40,7 @@ For example, to **validate** LanguageBind on **Depth-Language** with 1 GPUs.
 * Then you can run
 
 ```bash
-CACHE_DIR="path/to/pretrained/weight"
+CACHE_DIR="/path/to/LanguageBind"
 RESUME="thermal_language.pt"
 ANNOTATION="path/to/data"
 cd /path/to/LanguageBind
@@ -66,7 +66,18 @@ TORCH_DISTRIBUTED_DEBUG=DETAIL HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 torc
 ## Downstream datasets
 
 ### Depth
-NYU V2 dataset is downloaded from [this repo](https://github.com/TUI-NICR/nicr-scene-analysis-datasets/tree/main/nicr_scene_analysis_datasets/datasets/nyuv2) and we reformat them to conform to the standard ImageNet format. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L192).
+NYU V2 dataset is downloaded from [this repo](https://github.com/TUI-NICR/nicr-scene-analysis-datasets/tree/main/nicr_scene_analysis_datasets/datasets/nyuv2) and we reformat them to conform to the standard ImageNet format. We also provide data as follows. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L192).
+
+<div align="center">
+<table border="1" width="100%">
+    <tr align="center">
+        <th>Datasets</th><th>Baidu Yun</th><th>Google Cloud</th><th>Peking University Yun</th>
+    </tr>
+    <tr align="center">
+        <td>NYU</td><td><a href="https://pan.baidu.com/s/1AGOG8U3F7W8AvJiEmuzs-A?pwd=1dsg">Link</a></td><td><a href="https://drive.google.com/file/d/1CltzrTBLFqLxJzpztSIN-5ZosZpXQQ6u/view?usp=sharing">Link</a></td><td><a href="https://disk.pku.edu.cn:443/link/7D7B164DEA64059793D3C3E3A65C0F64">Link</a></td>
+    </tr>
+</table>
+</div>
 
 ### Video
 Video datasets are downloaded from [this repo](https://github.com/jpthu17/HBI) and we show the folder structure. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L74).
