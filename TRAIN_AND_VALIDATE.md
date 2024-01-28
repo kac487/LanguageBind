@@ -2,8 +2,24 @@ We provide the **off-the-shelf** scripts in the [scripts folder](scripts).
 
 ## Training LanguageBind 
 
+
+<div align="center">
+<table border="1" width="100%">
+    <tr align="center">
+        <th>Cache of pretrained weight</th><th>Baidu Yun</th><th>Google Cloud</th><th>Peking University Yun</th>
+    </tr>
+    <tr align="center">
+        <td>Large</td><td><a href="https://pan.baidu.com/s/1co46bkuUJXr8ePPKp1WWgA?pwd=ofm6">Link</a></td><td><a href="https://drive.google.com/drive/folders/1VQYZlqfKmCMuHffypf5F96odyMCEI87H?usp=drive_link">Link</a></td><td><a href="https://disk.pku.edu.cn:443/link/9CA764E6307790B01D2D4F7E314E8E43">Link</a></td>
+    </tr>
+    <tr align="center">
+        <td>Huge</td><td><a href="https://pan.baidu.com/s/1QLpyXEYunoXS-oqGsvzKKA?pwd=vgo2">Link</a></td><td>-</td><td><a href="https://disk.pku.edu.cn:443/link/720A77A7DB9EFD167C5AC8E3FC4B6068">Link</a></td>
+    </tr>
+</table>
+</div>
+
+
 For example, to **train** LanguageBind on **Depth-Language** with 8 GPUs (1 nodes x 8 GPUs).
-* First download the pretrained weight from [BaiDu disk](https://pan.baidu.com/s/1co46bkuUJXr8ePPKp1WWgA?pwd=ofm6), [Peking univercity disk](https://disk.pku.edu.cn:443/link/9CA764E6307790B01D2D4F7E314E8E43) or [Google disk](https://drive.google.com/drive/folders/1VQYZlqfKmCMuHffypf5F96odyMCEI87H?usp=drive_link). Put the pretrained weight on `path/to/LanguageBind`. and specify `CACHE_DIR=path/to/LanguageBind`.
+* First download the cache of pretrained weight above. and specify `CACHE_DIR=path/to/LanguageBind`.
 * The second step is to develop a path to `ANNOTATION` and `DATA` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/base_datasets.py#L37) according to the [dataset preparation](https://github.com/PKU-YuanGroup/LanguageBind#-vidal-10m).
 * Then you can run
 
@@ -66,7 +82,7 @@ TORCH_DISTRIBUTED_DEBUG=DETAIL HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 torc
 ## Downstream datasets
 
 ### Depth
-NYU V2 dataset is downloaded from [this repo](https://github.com/TUI-NICR/nicr-scene-analysis-datasets/tree/main/nicr_scene_analysis_datasets/datasets/nyuv2) and we reformat them to conform to the standard ImageNet format. We also provide data as follows. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L192).
+NYU V2 dataset is downloaded from [this repo](https://github.com/TUI-NICR/nicr-scene-analysis-datasets/tree/main/nicr_scene_analysis_datasets/datasets/nyuv2) and we reformat them to conform to the standard ImageNet format. We also provide data as follows. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L221).
 
 <div align="center">
 <table border="1" width="100%">
@@ -86,7 +102,7 @@ Video datasets are downloaded from [this repo](https://github.com/jpthu17/HBI) a
 Audio datasets are downloaded from [this repo](https://github.com/OFA-Sys/ONE-PEACE/blob/main/datasets.md#audio) and Audioset from [here](https://github.com/qiuqiangkong/audioset_tagging_cnn#1-download-dataset).We reformat them to conform to the standard ImageNet format. Change the ```data_root``` [here1](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L144) and [here2](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L159).
 
 ### Infrared (Thermal)
-We download LLVIP from [official website](https://bupt-ai-cz.github.io/LLVIP/), and FLIR from [here](https://www.flir.com/oem/adas/adas-dataset-form/). We reformat them to conform to the standard ImageNet format. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L24). We also provide the processed data as follows.
+We download LLVIP from [official website](https://bupt-ai-cz.github.io/LLVIP/), and FLIR from [here](https://www.flir.com/oem/adas/adas-dataset-form/). We reformat them to conform to the standard ImageNet format. Change the ```data_root``` [here](https://github.com/PKU-YuanGroup/LanguageBind/blob/main/data/build_datasets.py#L233). We also provide the processed data as follows.
 
 <div align="center">
 <table border="1" width="100%">
