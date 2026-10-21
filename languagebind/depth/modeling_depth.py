@@ -9,7 +9,8 @@ from torch.nn import functional as F
 from transformers import PreTrainedModel, add_start_docstrings
 from transformers.modeling_outputs import BaseModelOutput, BaseModelOutputWithPooling
 from transformers.models.clip.modeling_clip import CLIPMLP, CLIPAttention, CLIPTextEmbeddings, CLIPVisionEmbeddings, \
-    CLIPVisionModelWithProjection, CLIPTextModelWithProjection, _expand_mask, CLIPOutput, clip_loss
+    CLIPVisionModelWithProjection, CLIPTextModelWithProjection, CLIPOutput, clip_loss
+from transformers.modeling_attn_mask_utils import _prepare_4d_attention_mask as _expand_mask
 from transformers.utils import add_start_docstrings_to_model_forward, replace_return_docstrings
 
 from .configuration_depth import LanguageBindDepthConfig, CLIPVisionConfig, CLIPTextConfig
@@ -751,6 +752,9 @@ class LanguageBindDepth(CLIPPreTrainedModel):
 
         text_config = config.text_config
         vision_config = config.vision_config
+        # transformers>=4.48 CLIPAttention reads _attn_implementation off the sub-configs, but PreTrainedModel only
+        # sets it on the top-level config (the CLIP transformers here are plain nn.Modules): mirror it down.
+        text_config._attn_implementation = vision_config._attn_implementation = config._attn_implementation
         self.add_time_attn = vision_config.add_time_attn
         self.lora_r = vision_config.lora_r
         self.lora_alpha = vision_config.lora_alpha
